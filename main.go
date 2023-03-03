@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	userName := os.Getenv("USERNAME")
+	userName := os.Getenv("USER")
 	userPassword := os.Getenv("USERPWD")
 	currentUser := user.NewUser(userName, userPassword)
 
