@@ -8,7 +8,7 @@ This is a tool for Freedomer to auto-punch.
     docker run -e USERNAME='username' -e USERPWD='userpwd' wpted/fds_punch
 ```
 
-# Can trigger it using Azure Functions or Virtual Machines(crontab).
+# Trigger it using Azure Functions or Virtual Machines(crontab).
 
 ## Create shell script to run image
 ```sh
