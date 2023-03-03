@@ -16,11 +16,13 @@ func main() {
 	noon := time.Date(now.Year(), now.Month(), now.Day(), 12, 0, 0, 0, now.Location())
 
 	if now.Before(noon) {
-		fmt.Printf("It's before noon, %s", currentUser.Account)
-		currentUser.Punch("2", "S")
+		if currentUser.Punch("2", "S") {
+			fmt.Printf("Clock-in successfully, %s", currentUser.Account)
+		}
 
 	} else {
-		fmt.Printf("It's after noon, %s", currentUser.Account)
-		currentUser.Punch("2", "E")
+		if currentUser.Punch("2", "E") {
+			fmt.Printf("Clock-out successfully, %s", currentUser.Account)
+		}
 	}
 }
