@@ -3,7 +3,7 @@ RUN         mkdir -p /app
 WORKDIR     /app
 COPY        . .
 
-ENV USERNAME=""
+ENV USER=""
 ENV USERPWD=""
 
 RUN         go mod download
