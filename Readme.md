@@ -17,6 +17,6 @@ This is a tool for Freedomer to auto-punch.
 
 ## Trigger with crontab
 ```crontab
-    0 9 * * 1-5 /path/to/run_image.sh
-    0 18 * * 1-5 /path/to/run_image.sh
+    0 9 * * 1-5 /path/to/run_image.sh // clock-in
+    0 18 * * 1-5 /path/to/run_image.sh // clock-out
 ```
