@@ -1,18 +1,26 @@
 # Femas Auto Punch
 This is a tool for Freedomer to auto-punch.
 
-
-### Run with docker
+## Run locally
 ```bash
-    docker pull wpted/fds_punch
-    docker run -e USERNAME='username' -e USERPWD='userpwd' wpted/fds_punch
+    export USER="username"
+    export USERPWD="userpwd"
+
+    go run main.go
 ```
 
-## Trigger it using Azure Functions or Virtual Machines(crontab).
+
+## Run with docker
+```bash
+    docker pull wpted/fds_punch
+    docker run -e USER='username' -e USERPWD='userpwd' wpted/fds_punch
+```
+
+### Trigger it using Azure Functions or Virtual Machines(crontab).
 
 - Create shell script(myjob.sh) to run image
 ```nano
-    docker run -e USERNAME='username' -e USERPWD='userpwd' wpted/fds_punch
+    docker run -e USER='username' -e USERPWD='userpwd' wpted/fds_punch
 ```
 
 - Make the script executable by running the command
