@@ -14,9 +14,15 @@ This is a tool for Freedomer to auto-punch.
 ```nano
     docker run -e USERNAME='username' -e USERPWD='userpwd' wpted/fds_punch
 ```
-Make the script executable by running the command
-```shell
+
+- Make the script executable by running the command
+```bash
     chmod +x myjob.sh
+```
+
+- Open crontab in terminal
+```bash
+    crontab -e
 ```
 
 - Trigger with crontab
