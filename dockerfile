@@ -10,4 +10,3 @@ RUN         go mod download
 RUN         go build -o app
 ENTRYPOINT  ["./app"]
 
-# docker run -e USERNAME='username' -e USERPWD='userpwd' image_name
