@@ -5,6 +5,7 @@ COPY        . .
 
 ENV USER=""
 ENV USERPWD=""
+ENV TZ="Asia/Taipei"
 
 RUN         go mod download
 RUN         go build -o app
