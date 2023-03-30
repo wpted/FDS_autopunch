@@ -13,6 +13,7 @@ import (
 const FemasLogin = "https://femascloud.com/freedomsystems/fsapi/V3/login.json"
 const FemasPunch = "https://fsapi.femascloud.com/freedomsystems/fsapi/V3/punch_card.json"
 
+// User is the structure for Femas Login
 type User struct {
 	DomainName string `json:"domainName"`
 	Account    string `json:"account"`
@@ -20,6 +21,7 @@ type User struct {
 	IsAccount  string `json:"isAccount"`
 }
 
+// LoginResponse is the response after login to Femas
 type LoginResponse struct {
 	Response struct {
 		Status            string      `json:"status"`
@@ -55,12 +57,14 @@ type LoginResponse struct {
 	} `json:"response"`
 }
 
+// PunchPayload is the required data used for punching in or out
 type PunchPayload struct {
 	ClockData string `json:"clockData"`
 	Latitude  string `json:"latitude"`
 	Longitude string `json:"longitude"`
 }
 
+// newPunchPayload creates a new punch payload for request
 func newPunchPayload(punchType string) *PunchPayload {
 	punchData := fmt.Sprintf("%s,%s,%s", "2", "1", punchType)
 	return &PunchPayload{
@@ -70,6 +74,7 @@ func newPunchPayload(punchType string) *PunchPayload {
 	}
 }
 
+// NewUser creates a new user payload
 func NewUser(userName, userPassword string) *User {
 	return &User{
 		DomainName: "freedomsystems",
@@ -79,6 +84,7 @@ func NewUser(userName, userPassword string) *User {
 	}
 }
 
+// getToken gets the user's Femas login token
 func (u *User) getToken() string {
 	userData := fmt.Sprintf("%s:%s", u.Account, u.Password)
 	encodedUserData := base64.StdEncoding.EncodeToString([]byte(userData))
@@ -118,11 +124,11 @@ func (u *User) getToken() string {
 	if err = json.Unmarshal(bytesResponse, &response); err != nil {
 		log.Fatal(err)
 	}
-
 	return response.Response.Token
 }
 
-func (u *User) Punch(date, punchType string) bool {
+// Punch clocks-in or out with the certain type, "E" for clocking in, "S" for clocking out
+func (u *User) Punch(punchType string) bool {
 	newPunchPayload := newPunchPayload(punchType)
 
 	punchJson, err := json.Marshal(newPunchPayload)
@@ -131,7 +137,6 @@ func (u *User) Punch(date, punchType string) bool {
 	}
 
 	var client http.Client
-
 	punchRequest, err := http.NewRequest(http.MethodPost, FemasPunch, bytes.NewBuffer(punchJson))
 	punchRequest.Header.Set("Authorization", u.getToken())
 
@@ -147,6 +152,7 @@ func (u *User) Punch(date, punchType string) bool {
 	}(httpResponse)
 
 	if httpResponse.StatusCode != http.StatusOK {
+		fmt.Printf("error")
 		return false
 	}
 	return true
