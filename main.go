@@ -26,9 +26,9 @@ func main() {
 	nowMonth := now.Month().String()
 	nowDate := now.Day()
 
-	// months that is not special
+	// months that is special
 	if dates, ok := holiday2023[nowMonth]; ok {
-		// date that isn't special
+		// date that is special
 		for _, date := range dates {
 			if nowDate == date {
 				fmt.Printf("You're on holiday baby")
