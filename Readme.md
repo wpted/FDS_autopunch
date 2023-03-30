@@ -2,7 +2,7 @@
 This is a tool for Freedomer to auto-punch.
 
 ## Run locally
-```bash
+```zsh
     export USER="username"
     export USERPWD="userpwd"
 
@@ -28,13 +28,24 @@ This is a tool for Freedomer to auto-punch.
     chmod +x myjob.sh
 ```
 
-- Open crontab in terminal
-```bash
-    crontab -e
+Set a custom cron
+```zsh
+    nano <mycronname>
+```
+
+Since the time zone how a virtual machine depends, check the machine time first
+```zsh
+    timedatectl
+```
+
+Then set the time that fits your requirement
+```nano
+    # mycronname
+    0 9 * * 1-5 /path/to/run_image.sh // clock-in
+    0 18 * * 1-5 /path/to/run_image.sh // clock-out
 ```
 
 - Trigger with crontab
-```nano
-    0 9 * * 1-5 /path/to/run_image.sh // clock-in
-    0 18 * * 1-5 /path/to/run_image.sh // clock-out
+```zsh
+    crontab <mycronname>
 ```
